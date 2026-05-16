@@ -4,7 +4,7 @@ def calculate(operation):
     try:
         num1 = float(entry1.get())
         num2 = float(entry2.get())
-
+        
         if operation == "add":
             result = num1 + num2
         elif operation == "sub":
@@ -12,12 +12,15 @@ def calculate(operation):
         elif operation == "mul":
             result = num1 * num2
         elif operation == "div":
+            if num2 == 0:
+                result_label.config(text="Result: Cannot divide by 0")
+                return
             result = num1 / num2
-
+        
         result_label.config(text=f"Result: {result}")
-
-    except Exception as e:
-        result_label.config(text="Error")
+        
+    except ValueError:
+        result_label.config(text="Result: Please enter valid numbers")
 
 # Main Window
 root = tk.Tk()
